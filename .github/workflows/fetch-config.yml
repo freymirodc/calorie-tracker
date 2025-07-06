@@ -1,0 +1,50 @@
+name: Fetch Configuration File
+
+on:
+  # This workflow will run on every push to the main branch
+  push:
+    branches:
+      - main
+  # You can also trigger it manually from the GitHub Actions tab
+  workflow_dispatch:
+
+jobs:
+  fetch_and_place_config:
+    runs-on: ubuntu-latest # Specifies the operating system for the job
+
+    steps:
+      # Step 1: Checkout the repository
+      # This action checks out your repository under $GITHUB_WORKSPACE,
+      # so your workflow can access it.
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Fetch the config.json from the specified endpoint
+      # Replace 'YOUR_ENDPOINT_URL_HERE' with the actual URL of your config.json
+      # and 'path/to/your/project/config.json' with the desired path in your repository.
+      # The 'curl -o' command saves the output directly to the specified file.
+      - name: Fetch config.json
+        run: |
+          # Define the URL of your configuration file.
+          # IMPORTANT: Replace this placeholder with your actual endpoint URL.
+          CONFIG_URL="https://dummyjson.com/ip" # <<< REPLACE THIS URL
+
+          # Define the destination path within your repository.
+          # This is where the fetched config.json will be saved.
+          # For example, if you want it in the root of your project, use 'config.json'.
+          # If you want it in a 'src' folder, use 'src/config.json'.
+          DESTINATION_PATH="config.json" # <<< ADJUST THIS PATH IF NEEDED
+
+          echo "Fetching config from: $CONFIG_URL"
+          echo "Saving to: $DESTINATION_PATH"
+
+          # Use curl to download the file.
+          # -s: Silent mode (don't show progress meter or error messages)
+          # -S: Show error messages even if silent mode is on
+          # -L: Follow redirects
+          # -o: Write output to a local file instead of stdout
+          curl -sSL -o "$DESTINATION_PATH" "$CONFIG_URL"
+
+          # Optional: Verify the file content (e.g., print first few lines)
+          echo "Content of fetched config.json:"
+          cat "$DESTINATION_PATH" | head -n 10 # Prints the first 10 lines of the file
