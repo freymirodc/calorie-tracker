@@ -1,11 +1,11 @@
 # 🚀 Deployment Setup Guide
 
-This guide will help you set up automatic releases and Vercel deployment for your Calorie Tracker application.
+This guide will help you set up automatic releases and Netlify deployment for your Calorie Tracker application.
 
 ## 📋 Prerequisites
 
 - GitHub repository: `https://github.com/freymirodc/calorie-tracker.git`
-- Vercel account (free tier available)
+- Netlify account (free tier available)
 - Supabase project with environment variables
 
 ## 🔧 Setup Steps
@@ -39,44 +39,39 @@ git push -u origin develop
    - ✅ Require branches to be up to date
    - ✅ Include administrators
 
-### 3. Vercel Setup
+### 3. Netlify Setup
 
-#### Step 1: Create Vercel Account
-1. Go to [vercel.com](https://vercel.com)
+#### Step 1: Create Netlify Account
+1. Go to [netlify.com](https://netlify.com)
 2. Sign up with your GitHub account
-3. Import your repository
+3. Connect your GitHub repository
 
-#### Step 2: Configure Environment Variables
-In your Vercel dashboard:
-1. Go to your project settings
-2. Navigate to **Environment Variables**
-3. Add the following variables:
+#### Step 2: Configure Site Settings
+In your Netlify dashboard:
+1. Go to **Site settings** > **Build & deploy**
+2. Set build command: `npm run build`
+3. Set publish directory: `out`
+4. Set Node.js version: `18`
+
+#### Step 3: Configure Environment Variables
+In your Netlify dashboard:
+1. Go to **Site settings** > **Environment variables**
+2. Add the following variables:
 
 ```
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 ```
 
-#### Step 3: Get Vercel Tokens
-1. Go to [Vercel Account Settings](https://vercel.com/account/tokens)
-2. Create a new token with name "GitHub Actions"
+#### Step 4: Get Netlify Tokens
+1. Go to [Netlify User Settings](https://app.netlify.com/user/applications#personal-access-tokens)
+2. Create a new personal access token
 3. Copy the token (you'll need it for GitHub secrets)
 
-#### Step 4: Get Vercel Project IDs
-Run these commands in your project directory:
-```bash
-# Install Vercel CLI
-npm i -g vercel
-
-# Login to Vercel
-vercel login
-
-# Link your project
-vercel link
-
-# Get your org and project IDs
-cat .vercel/project.json
-```
+#### Step 5: Get Netlify Site ID
+1. In your Netlify site dashboard
+2. Go to **Site settings** > **General**
+3. Copy the **Site ID** (you'll need it for GitHub secrets)
 
 ### 4. GitHub Secrets Configuration
 
@@ -87,9 +82,10 @@ Add these secrets to your GitHub repository:
 3. Add the following secrets:
 
 ```
-VERCEL_TOKEN=your_vercel_token_from_step_3
-VERCEL_ORG_ID=your_org_id_from_vercel_project_json
-VERCEL_PROJECT_ID=your_project_id_from_vercel_project_json
+NETLIFY_AUTH_TOKEN=your_netlify_personal_access_token
+NETLIFY_SITE_ID=your_netlify_site_id
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 ```
 
 ### 5. Workflow Overview
@@ -98,14 +94,14 @@ The GitHub Actions workflow will:
 
 #### On Pull Requests to main:
 - ✅ Run tests and build
-- ✅ Deploy preview to Vercel
+- ✅ Deploy preview to Netlify
 - ✅ Comment on PR with preview link
 
 #### On Push to main (merge):
 - ✅ Run tests and build
 - ✅ Create automatic release with semantic versioning
 - ✅ Generate changelog
-- ✅ Deploy to Vercel production
+- ✅ Deploy to Netlify production
 
 ## 📝 Commit Message Convention
 

@@ -6,7 +6,7 @@ This guide will help you test the complete CI/CD pipeline including GitHub Actio
 
 - ✅ Verify GitHub Actions workflow triggers correctly
 - ✅ Test semantic release automation
-- ✅ Confirm Vercel deployment integration
+- ✅ Confirm Netlify deployment integration
 - ✅ Validate conventional commit processing
 - ✅ Check PR preview deployments
 
@@ -106,7 +106,7 @@ Follow the detailed steps below for a comprehensive test.
      ├── Setup Node.js
      ├── Install dependencies
      ├── Download build artifacts
-     └── Deploy Preview to Vercel
+     └── Deploy Preview to Netlify
    ```
 
 3. **Check PR Comments**:
@@ -138,12 +138,12 @@ Follow the detailed steps below for a comprehensive test.
      ├── Download build artifacts
      └── Create Release (semantic-release)
    
-   ✅ Deploy to Vercel
+   ✅ Deploy to Netlify
      ├── Checkout code
      ├── Setup Node.js
      ├── Install dependencies
      ├── Download build artifacts
-     └── Deploy to Vercel (production)
+     └── Deploy to Netlify (production)
    ```
 
 ### Step 5: Verify Release Creation

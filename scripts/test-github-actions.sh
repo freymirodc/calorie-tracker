@@ -62,13 +62,13 @@ fi
 
 print_success "Semantic release configuration found"
 
-# Check if Vercel config exists
-if [ ! -f "vercel.json" ]; then
-    print_error "Vercel configuration not found!"
+# Check if Netlify config exists
+if [ ! -f "netlify.toml" ]; then
+    print_error "Netlify configuration not found!"
     exit 1
 fi
 
-print_success "Vercel configuration found"
+print_success "Netlify configuration found"
 
 # Check current branch
 CURRENT_BRANCH=$(git branch --show-current)
@@ -133,7 +133,7 @@ print_info "Scenario 2: Test Release Workflow"
 echo "   1. Merge the PR to main branch"
 echo "   2. Check Actions tab for release workflow"
 echo "   3. Verify new release is created in GitHub"
-echo "   4. Check Vercel deployment status"
+echo "   4. Check Netlify deployment status"
 echo ""
 
 print_info "Scenario 3: Test Conventional Commits"
@@ -180,8 +180,8 @@ echo ""
 print_info "3. Monitor the workflow in GitHub Actions:"
 echo "   https://github.com/freymirodc/calorie-tracker/actions"
 echo ""
-print_info "4. Check Vercel deployments:"
-echo "   https://vercel.com/dashboard"
+print_info "4. Check Netlify deployments:"
+echo "   https://app.netlify.com/"
 echo ""
 print_info "5. Verify release creation (after merge to main):"
 echo "   https://github.com/freymirodc/calorie-tracker/releases"
@@ -195,7 +195,7 @@ echo "📋 Workflow Checklist"
 echo "===================="
 echo "✅ GitHub Actions workflow configured"
 echo "✅ Semantic release setup"
-echo "✅ Vercel configuration ready"
+echo "✅ Netlify configuration ready"
 echo "✅ Conventional commits format"
 echo "✅ Local build test passed"
 echo "⏳ Waiting for GitHub push to test workflow"

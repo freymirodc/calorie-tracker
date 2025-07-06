@@ -40,7 +40,7 @@ export default function MobileDemoPage() {
                 🚀 CI/CD Pipeline Ready!
               </p>
               <p className="text-xs text-blue-600 dark:text-blue-400 mt-1">
-                GitHub Actions workflow configured for automatic releases and Vercel deployment
+                GitHub Actions workflow configured for automatic releases and Netlify deployment
               </p>
             </div>
           </div>

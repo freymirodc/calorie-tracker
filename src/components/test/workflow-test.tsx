@@ -28,10 +28,10 @@ export function WorkflowTest() {
       action: () => runTest('GitHub Actions')
     },
     {
-      name: 'Vercel Deployment',
+      name: 'Netlify Deployment',
       description: 'Verify deployment configuration',
       icon: Rocket,
-      action: () => runTest('Vercel Deployment')
+      action: () => runTest('Netlify Deployment')
     },
     {
       name: 'Semantic Release',
