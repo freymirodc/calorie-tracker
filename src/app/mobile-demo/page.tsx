@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { BottomTabBar, BottomTabBarSpacer } from '@/components/mobile/bottom-tab-bar'
 import { FloatingActionButton } from '@/components/mobile/floating-action-button'
 import { FastingPresetDialog } from '@/components/fasting/fasting-preset-dialog'
+import { WorkflowTest } from '@/components/test/workflow-test'
 import { Button } from '@/components/ui/button'
 import { Smartphone, Tablet, Monitor, Clock } from 'lucide-react'
 import { FastingPreset } from '@/lib/fasting-utils'
@@ -32,6 +33,14 @@ export default function MobileDemoPage() {
               </p>
               <p className="text-xs text-green-600 dark:text-green-400 mt-1">
                 Theme-aware colors, hidden desktop elements, improved FAB positioning
+              </p>
+            </div>
+            <div className="mt-2 p-3 bg-blue-50 dark:bg-blue-950/20 rounded-lg border border-blue-200 dark:border-blue-800">
+              <p className="text-sm text-blue-700 dark:text-blue-300 font-medium">
+                🚀 CI/CD Pipeline Ready!
+              </p>
+              <p className="text-xs text-blue-600 dark:text-blue-400 mt-1">
+                GitHub Actions workflow configured for automatic releases and Vercel deployment
               </p>
             </div>
           </div>
@@ -102,6 +111,9 @@ export default function MobileDemoPage() {
               </FastingPresetDialog>
             </CardContent>
           </Card>
+
+          {/* GitHub Actions Test */}
+          <WorkflowTest />
 
           {/* Instructions */}
           <Card>
