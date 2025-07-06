@@ -48,3 +48,22 @@ jobs:
           # Optional: Verify the file content (e.g., print first few lines)
           echo "Content of fetched config.json:"
           cat "$DESTINATION_PATH" | head -n 10 # Prints the first 10 lines of the file
+
+          # Step 3: Commit and push the changes (optional, use with caution)
+      # This step is only needed if you want the fetched config.json to be committed
+      # back into your repository after the workflow runs.
+      # Be careful with this, as it will create new commits on your branch.
+      # It's often better to fetch the config during build/deploy time without committing it.
+      - name: Commit and Push config.json (Optional)
+        if: github.event_name == 'workflow_dispatch' # Only commit if triggered manually
+        run: |
+          git config user.name "freymirodc"
+          git config user.email "freymiro33@gmail.com"
+          git add config.json # Add the fetched file
+          git commit -m "feat: Add/update config.json from endpoint" || echo "No changes to commit"
+          git push
+        env:
+          # GITHUB_TOKEN is a special token provided by GitHub Actions for authentication.
+          # It has permissions to push to the repository where the workflow runs.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
